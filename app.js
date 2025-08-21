@@ -21,7 +21,7 @@ app.post('/webhook', (req, res) => {
     console.log('Request Method:', req.method);
     console.log('Request Headers:', req.headers);
     console.log('Queries:', req.queries)
-    console.log('Request Body:', JSON.stringify(req.body, null, 2));
+    console.log(req)
     console.log('----------------------------------');
 
     // Send a response back
