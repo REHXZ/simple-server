@@ -17,10 +17,6 @@ app.get('/', (req, res) => {
 // POST endpoint that logs both query parameters and request body
 app.post('/webhook', (req, res) => {
     console.log('--- New POST request received ---');
-    console.log('Request URL:', req.url);
-    console.log('Request Method:', req.method);
-    console.log('Request Headers:', req.headers);
-    console.log('Query Parameters:', req.query);
     console.log('Request Body:', JSON.stringify(req.body, null, 2));
     console.log('Full URL:', req.protocol + '://' + req.get('host') + req.originalUrl);
     console.log('----------------------------------');
