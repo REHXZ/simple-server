@@ -14,19 +14,38 @@ app.get('/', (req, res) => {
     res.send("This is from root");
 });
 
-// POST endpoint that logs the entire request body
+// POST endpoint that logs both query parameters and request body
 app.post('/webhook', (req, res) => {
     console.log('--- New POST request received ---');
     console.log('Request URL:', req.url);
     console.log('Request Method:', req.method);
     console.log('Request Headers:', req.headers);
-    console.log('Queries:', req.body)
+    console.log('Query Parameters:', req.query);
+    console.log('Request Body:', JSON.stringify(req.body, null, 2));
+    console.log('Full URL:', req.protocol + '://' + req.get('host') + req.originalUrl);
     console.log('----------------------------------');
 
-    // Send a response back
+    // Send a response back with the received data
     res.status(200).json({
         message: "Request received successfully",
-        receivedData: req.body
+        queryParameters: req.query,
+        bodyData: req.body
+    });
+});
+
+// Additional GET endpoint to easily test query parameters
+app.get('/webhook', (req, res) => {
+    console.log('--- New GET request received ---');
+    console.log('Request URL:', req.url);
+    console.log('Request Method:', req.method);
+    console.log('Request Headers:', req.headers);
+    console.log('Query Parameters:', req.query);
+    console.log('Full URL:', req.protocol + '://' + req.get('host') + req.originalUrl);
+    console.log('----------------------------------');
+
+    res.status(200).json({
+        message: "GET request received successfully",
+        queryParameters: req.query
     });
 });
 
